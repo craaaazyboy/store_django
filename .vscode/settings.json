@@ -2,7 +2,7 @@
     // путь к вашему виртуальному окружению
     // на Windows «bin» нужно заменить на «Scripts», «python» на «python.exe»
     // вместо «/» использовать «//», либо «\»
-    "python.pythonPath":"~/code/store_django/store_server/env/bin/activate",
+    "python.pythonPath":"//wsl.localhost//Debian//home//crazy_boy//code//store_django//store_server//env//bin//python",
     "python.testing.pytestArgs": [],
     "python.testing.unittestEnabled": false,
     "python.testing.nosetestsEnabled": false,
