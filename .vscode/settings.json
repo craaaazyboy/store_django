@@ -2,7 +2,7 @@
     // путь к вашему виртуальному окружению
     // на Windows «bin» нужно заменить на «Scripts», «python» на «python.exe»
     // вместо «/» использовать «//», либо «\»
-    "python.pythonPath":"//wsl.localhost//Debian//home//crazy_boy//code//store_django//store_server//env//bin//python",
+    "python.pythonPath":"../env/bin/python",
     "python.testing.pytestArgs": [],
     "python.testing.unittestEnabled": false,
     "python.testing.nosetestsEnabled": false,
@@ -14,6 +14,17 @@
     "cornflakes.linter.executablePath": "/",
     "cornflakes.linter.run": "onType",
     "files.insertFinalNewline": true,
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint_django",
+        "--load-plugins",
+        "pylint_django.checkers.migrations",
+        "--disable=C0114, C0115, W0222",
+        "--disable=imported-auth-user",
+        "--disable=invalid-name",
+        "--disable=line-too-long",
+        "--django-settings-module=<mainapp>.settings",
+    ],
     "editor.rulers": [
         80,
     ],

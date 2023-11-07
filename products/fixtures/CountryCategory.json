@@ -1,0 +1,1 @@
+[{"model": "products.countrycategory", "pk": 1, "fields": {"name": "Кения"}}, {"model": "products.countrycategory", "pk": 2, "fields": {"name": "Россия"}}, {"model": "products.countrycategory", "pk": 3, "fields": {"name": "Эквадор"}}]
