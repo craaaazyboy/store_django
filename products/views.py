@@ -5,7 +5,7 @@ from products.models import FlowersWarehouse, FlowersCategory, FinishedProducts
 
 def index(request):
     context = {
-        "title": "Store",
+        "title": "Flowers Store",
         "is_promotion": True,
     }
     return render(request, "products/index.html", context)
@@ -13,7 +13,7 @@ def index(request):
 
 def products(request):
     context = {
-        "title": "Store - Каталог",
+        "title": "Flowers Store - Каталог",
         "products": FlowersWarehouse.objects.all(),
         "categories" : FlowersCategory.objects.all(),
     }
