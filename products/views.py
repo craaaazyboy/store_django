@@ -1,22 +1,33 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.views.generic.base import TemplateView
  
 # Create your views here.
 from products.models import FlowersWarehouse, FlowersCategory, FinishedProducts, Basket, FinishedProductsCategory
 from users.models import User
 
-def index(request):
-    context = {
-        "title": "Flowers Store",
-        "is_promotion": True,
-    }
-    return render(request, "products/index.html", context)
+
+class IndexView(TemplateView):
+    template_name= "products/index.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexView,self).get_context_data()
+        context['title'] = 'Flowers store'
+        return context
+ 
+
+# def index(request):
+#     context = {
+#         "title": "Flowers Store",
+#         "is_promotion": True,
+#     }
+#     return render(request, "products/index.html", context)
 
 
 def products(request,category_id= None, page_number=1):
     products = FinishedProducts.objects.filter(category_products_id=category_id) if category_id else FinishedProducts.objects.all()
-    per_page = 5
+    per_page = 6
     paginator = Paginator(products, per_page)
     products_paginator = paginator.page(page_number)
     context = {
