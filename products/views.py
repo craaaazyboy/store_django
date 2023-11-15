@@ -1,8 +1,8 @@
-from django.shortcuts import render, HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
+from django.shortcuts import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required 
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView
  
 # Create your views here.
 from products.models import FlowersWarehouse, FlowersCategory, FinishedProducts, Basket, FinishedProductsCategory
@@ -29,8 +29,9 @@ class IndexView(TemplateView):
 class ProductsListView(ListView):
     model = FinishedProducts
     template_name = "products/products.html"
+    paginate_by = 3
 
-    def get_queryset(self):
+    def get_queryset(self): 
         queryset = super(ProductsListView, self).get_queryset()
         category_id = self.kwargs.get('category_id')
         return queryset.filter(category_products_id=category_id) if category_id else queryset
@@ -69,6 +70,7 @@ def basket_add(request, product_id):
         basket.save()
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
+     
 
 def basket_remove(request, basket_id):
     basket = Basket.objects.get(id=basket_id)
