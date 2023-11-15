@@ -7,15 +7,12 @@ from django.views.generic.edit import CreateView
 # Create your views here.
 from products.models import FlowersWarehouse, FlowersCategory, FinishedProducts, Basket, FinishedProductsCategory
 from users.models import User
+from common.views import TitleMixin
 
 
-class IndexView(TemplateView):
+class IndexView(TitleMixin,TemplateView):
     template_name= "products/index.html"
-
-    def get_context_data(self, **kwargs):
-        context = super(IndexView,self).get_context_data()
-        context['title'] = 'Flowers store'
-        return context
+    title = 'Flowers store - Главная'
  
 
 # def index(request):
@@ -26,10 +23,11 @@ class IndexView(TemplateView):
 #     return render(request, "products/index.html", context)
 
 
-class ProductsListView(ListView):
+class ProductsListView(TitleMixin,ListView):
     model = FinishedProducts
     template_name = "products/products.html"
     paginate_by = 3
+    title = 'Flowers Store - Каталог'
 
     def get_queryset(self): 
         queryset = super(ProductsListView, self).get_queryset()
@@ -38,7 +36,6 @@ class ProductsListView(ListView):
 
     def get_context_data(self, *, object_list = None, **kwargs):
         context = super(ProductsListView, self).get_context_data()
-        context['title']= 'Flowers Store - Каталог'
         context['categories']= FinishedProductsCategory.objects.all()
         return context
 
