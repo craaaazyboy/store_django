@@ -79,3 +79,15 @@ def basket_remove_all(request):
     for basket in baskets:
         basket.delete()
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+class UserBasketsView(TitleMixin,ListView):
+    model = Basket
+    template_name = "products/baskets.html"
+    title = 'Flowers Store - Корзина'
+
+
+    def get_context_data(self, **kwargs):
+        context = super(UserBasketsView, self).get_context_data()
+        context['baskets'] = Basket.objects.filter(user=self.request.user)
+        return context

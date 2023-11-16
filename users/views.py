@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic.list import ListView
 
 from users.models import User
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
