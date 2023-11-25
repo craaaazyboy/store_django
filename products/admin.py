@@ -1,8 +1,12 @@
 from django.contrib import admin
 
+from products.models import (Basket, CountryCategory, FinishedProducts,
+                             FinishedProductsCategory, FlowersCategory,
+                             FlowersLength, FlowersWarehouse,
+                             ProductsToFlowers)
+
 # Register your models here.
 
-from products.models import FlowersWarehouse, FlowersCategory, FlowersLength, CountryCategory, FinishedProducts, FinishedProductsCategory, ProductsToFlowers, Basket
 
 admin.site.register(FlowersWarehouse)
 admin.site.register(FlowersCategory)
@@ -14,7 +18,7 @@ admin.site.register(ProductsToFlowers)
 @admin.register(FinishedProducts)
 class FinishedProductsAdmin(admin.ModelAdmin):
     list_display = ('name', 'price', 'quantity', 'category_products')
-    fields = ('name','category_products','structure',('price','quantity'),'image','count')
+    fields = ('name', 'category_products', 'structure', ('price', 'quantity'), 'image','count')
     search_fields = ('name',)
     ordering =('name',)
 
