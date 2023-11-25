@@ -1,13 +1,15 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import HttpResponseRedirect
-from django.contrib.auth.decorators import login_required 
 from django.views.generic.base import TemplateView
-from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
- 
-# Create your views here.
-from products.models import FlowersWarehouse, FlowersCategory, FinishedProducts, Basket, FinishedProductsCategory
-from users.models import User
+from django.views.generic.list import ListView
+
 from common.views import TitleMixin
+# Create your views here.
+from products.models import (Basket, FinishedProducts,
+                             FinishedProductsCategory, FlowersCategory,
+                             FlowersWarehouse)
+from users.models import User
 
 
 class IndexView(TitleMixin,TemplateView):
