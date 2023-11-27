@@ -25,12 +25,12 @@ SECRET_KEY = "django-insecure-$4+fb3q7x=)+tn=g2pjmq0y9kgd41mn$(7g4y+ryt&)(e(^7g7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['93.95.97.41','sssstoreflowers.ru','www.sssstoreflowers.ru']
 
 
 DOMAIN_NAME = 'http://93.95.97.41:8000'
 
-
+STATIC_ROO='/var/www/www-root/data/www/sssstoreflowers.ru/store_django/static/'
 # Application definition
 
 INSTALLED_APPS = [
@@ -90,6 +90,8 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "store_db",
         "USER": "username",
+
+
         "PASSWORD": "01041973",
         "HOST": "localhost",
         "PORT": "5432",
