@@ -5,81 +5,169 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='CountryCategory',
+            name="CountryCategory",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=128, unique=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=128, unique=True)),
             ],
         ),
         migrations.CreateModel(
-            name='FinishedProducts',
+            name="FinishedProducts",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=256)),
-                ('structure', models.TextField()),
-                ('price', models.DecimalField(decimal_places=2, max_digits=6)),
-                ('quantity', models.PositiveBigIntegerField(default=0)),
-                ('image', models.ImageField(upload_to='products_images')),
-                ('count', models.IntegerField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=256)),
+                ("structure", models.TextField()),
+                ("price", models.DecimalField(decimal_places=2, max_digits=6)),
+                ("quantity", models.PositiveBigIntegerField(default=0)),
+                ("image", models.ImageField(upload_to="products_images")),
+                ("count", models.IntegerField()),
             ],
         ),
         migrations.CreateModel(
-            name='FinishedProductsCategory',
+            name="FinishedProductsCategory",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=128, unique=True)),
-                ('description', models.TextField(blank=True, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=128, unique=True)),
+                ("description", models.TextField(blank=True, null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='FlowersCategory',
+            name="FlowersCategory",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=128, unique=True)),
-                ('description', models.TextField(blank=True, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=128, unique=True)),
+                ("description", models.TextField(blank=True, null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='FlowersLength',
+            name="FlowersLength",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('len', models.FloatField(max_length=5, unique=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("len", models.FloatField(max_length=5, unique=True)),
             ],
         ),
         migrations.CreateModel(
-            name='FlowersWarehouse',
+            name="FlowersWarehouse",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=256)),
-                ('description', models.TextField()),
-                ('price', models.DecimalField(decimal_places=2, max_digits=6)),
-                ('quantity', models.PositiveBigIntegerField(default=0)),
-                ('image', models.ImageField(upload_to='products_images')),
-                ('category_flowers', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='products.flowerscategory')),
-                ('country', models.ForeignKey(default=None, on_delete=django.db.models.deletion.PROTECT, to='products.countrycategory')),
-                ('len_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='products.flowerslength')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=256)),
+                ("description", models.TextField()),
+                ("price", models.DecimalField(decimal_places=2, max_digits=6)),
+                ("quantity", models.PositiveBigIntegerField(default=0)),
+                ("image", models.ImageField(upload_to="products_images")),
+                (
+                    "category_flowers",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="products.flowerscategory",
+                    ),
+                ),
+                (
+                    "country",
+                    models.ForeignKey(
+                        default=None,
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="products.countrycategory",
+                    ),
+                ),
+                (
+                    "len_id",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="products.flowerslength",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='ProductsToFlowers',
+            name="ProductsToFlowers",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('count', models.IntegerField()),
-                ('flowers_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='products.flowerswarehouse')),
-                ('products_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='products.finishedproducts')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("count", models.IntegerField()),
+                (
+                    "flowers_id",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="products.flowerswarehouse",
+                    ),
+                ),
+                (
+                    "products_id",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="products.finishedproducts",
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='finishedproducts',
-            name='category_products',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='products.finishedproductscategory'),
+            model_name="finishedproducts",
+            name="category_products",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                to="products.finishedproductscategory",
+            ),
         ),
     ]
