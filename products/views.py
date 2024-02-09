@@ -4,6 +4,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 from django.views.decorators.cache import cache_page
+from django.core.cache import cache
 
 from common.views import TitleMixin
 
@@ -38,15 +39,17 @@ class ProductsListView(TitleMixin, ListView):
     def get_queryset(self):
         queryset = super(ProductsListView, self).get_queryset()
         category_id = self.kwargs.get("category_id")
-        return (
-            queryset.filter(category_products_id=category_id)
-            if category_id
-            else queryset
-        )
+        return queryset.filter(category_products_id=category_id) if category_id else queryset
+    
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ProductsListView, self).get_context_data()
-        context["categories"] = FinishedProductsCategory.objects.all()
+        categories = cache.get("categories")
+        if not categories:
+            context["categories"] = FinishedProductsCategory.objects.all()
+            cache.set("categories",context["categories"])
+        else:
+            context["categories"] = categories
         return context
 
 

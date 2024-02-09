@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-$4+fb3q7x=)+tn=g2pjmq0y9kgd41mn$(7g4y+ryt&)(e(^7g7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['localhost','127.0.0.1']
 
 
 DOMAIN_NAME = "http://localhost:8000"
@@ -187,12 +187,12 @@ LOGOUT_REDIRECT_URL = "/"
 
 # Sending emails
 
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'django.store.example@gmail.com'
-# EMAIL_HOST_PASSWORD = 'ubib kpsd uclk thda'
-# EMAIL_USE_TLS = True
-# EMAIL_USE_SSL = False
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'django.store.example@gmail.com'
+EMAIL_HOST_PASSWORD = 'ubib kpsd uclk thda'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 SOCIALACCOUNT_PROVIDERS = {
     "github": {
@@ -260,3 +260,7 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
 
+#Selary
+
+CELERY_BROKER_URL =  'redis://127.0.0.1:6379'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
