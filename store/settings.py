@@ -25,10 +25,11 @@ SECRET_KEY = "django-insecure-$4+fb3q7x=)+tn=g2pjmq0y9kgd41mn$(7g4y+ryt&)(e(^7g7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1']
+ALLOWED_HOSTS = ['*','localhost','127.0.0.1',' 930f-93-188-41-67.ngrok-free.app']
 
+CSRF_TRUSTED_ORIGINS = ['https://*','https://e5ff-93-188-41-67.ngrok-free.app','https://*.127.0.0.1']
 
-DOMAIN_NAME = "http://localhost:8000"
+DOMAIN_NAME = "http://127.0.0.1:8000"
 
 
 # Application definition
@@ -108,6 +109,7 @@ AUTHENTICATION_BACKENDS = [
 WSGI_APPLICATION = "store.wsgi.application"
 
 INTERNAL_IPS = [
+    '*',
     "127.0.0.1",
     "localhost",
 ]
@@ -266,3 +268,6 @@ SIMPLE_JWT = {
 
 CELERY_BROKER_URL =  'redis://127.0.0.1:6379'
 CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
+
+
+UKASSA_PUBLIC_KEY = 'test_4ljvb1YEGs-BBVT32GBN72ALfW1R21d25_WBVAk2EUs'

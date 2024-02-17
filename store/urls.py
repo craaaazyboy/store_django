@@ -22,6 +22,7 @@ from django.urls import include, path
 from rest_framework.authtoken.views import obtain_auth_token
 
 from products.views import IndexView
+from orders.views import UKassa_webhook_view
 
 import debug_toolbar
 
@@ -33,6 +34,7 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("orders/", include("orders.urls", namespace="orders")),
     path("api/", include("api.urls", namespace="api")),
+    path("webhook/yookassa/", UKassa_webhook_view, name="yookassa_webhook"),
 ]
 
 

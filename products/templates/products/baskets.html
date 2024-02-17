@@ -24,10 +24,10 @@
         <li class="list-group-item " style="background-color: hsla(0, 0%, 100%,0.0)">
             <div class="row text-center" style="background-color: hsla(0, 0%, 100%,0.0)">
                 <div class="col-lg-4">
-                    <input name="basketID" type="number" class="form-control"
+                    <input name="basketID" type="number" class="form-control"  style="background-color: hsla(0, 0%, 100%,0.2)"
                             value="{{ basket.quantity}}" min="0">
                 </div>
-                <a class="btn btn-success btn-lg float-right" href="../orders/order-create.html">
+                <a class="btn btn-success btn-lg float-right " style="background-color: hsla(0, 0%, 100%,0.2); color :green" href="../orders/order-create.html">
                     добавить
                 </a>
                 <div class="col-lg-4">{{ basket.sum| intcomma}} руб.</div>
@@ -41,16 +41,16 @@
     </ul>
 </div>
 {%endfor%}
-<div class="card mb-3">
-    <div class="card-footer">
-        <p class="float-left">Итого</p>
+<div class="card mb-3"  style="background-color: hsla(0, 0%, 100%,0.2)">
+    <div class="card-footer"  style="background-color: hsla(0, 0%, 100%,0.2)">
+        <p class="float-left" style="background-color: hsla(0, 0%, 100%,0.2); color :green" href="../orders/order-create.html">Итого</p>
         <h4 class="float-right"> {{baskets.total_sum|intcomma}}руб.</h4>
     </div>
 </div>
-<a class="btn btn-success btn-lg float-right" href="{% url 'orders:order_create'%}">
+<a class="btn btn-success btn-lg float-right" style="background-color: hsla(0, 0%, 100%,0.2); color :green" href="{% url 'orders:order_create'%}">
     Оформить заказ
 </a>
-<a class="btn btn-success btn-lg float-right" href="{% url 'products:basket_remove_all'%}">
+<a class="btn btn-success btn-lg float-right" style="background-color: hsla(0, 0%, 100%,0.2); color :green" href="{% url 'products:basket_remove_all'%}">
     удалить все
 </a>
 {%else%}
