@@ -1,11 +1,14 @@
 import json
 from codecs import decode
 from http import HTTPStatus
+from django.db.models.query import QuerySet
 
 from django.forms import BaseModelForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic.edit import CreateView
 from django.views.generic.base import TemplateView
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 from django.urls import reverse, reverse_lazy
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
@@ -29,6 +32,27 @@ class CanceledTemplateView(TitleMixin, TemplateView):
     template_name = 'orders/canceled.html'
     title = 'Flowers Store - Заказ не был создан'
 
+class OrderListView(TitleMixin, ListView):
+    template_name = 'orders/orders.html'
+    title = 'Flowers Store - Заказы'
+    queryset = Order.objects.all()
+    ordering = ('-created')
+
+    def get_queryset(self):
+        queryset = super(OrderListView, self).get_queryset()
+        return queryset.filter(initiator=self.request.user)
+
+
+class OrderDetailView(DetailView):
+    template_name = 'orders/order.html'
+    model = Order
+
+    def get_context_data(self, **kwargs):
+        context = super(OrderDetailView, self).get_context_data(**kwargs)
+        context['json_history'] = Order.de_load_history(self)
+        context['title'] = f'Flowers Store - Заказ №{self.object.id}'
+        return context
+    
 
 class OrderCreateView(TitleMixin, CreateView):
     template_name = 'orders/order-create.html'
@@ -67,9 +91,7 @@ def UKassa_webhook_view(request):
     payload = request.body.decode('utf-8')
     payload_dict = json.loads(payload)
     if payload_dict['object']['status'] == 'succeeded':
-        baskets = Basket.objects.filter(user_id=int(payload_dict['object']['metadata']['user_id']))
-        for basket in baskets:
-            basket.delete()
-
-
+        order_id = int(payload_dict['object']['metadata']['order_id'])
+        order = Order.objects.get(id=order_id)
+        order.update_after_payment()
     return HttpResponse(status = 200)

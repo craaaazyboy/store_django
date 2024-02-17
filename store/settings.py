@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*','localhost','127.0.0.1',' 930f-93-188-41-67.ngrok-free.app']
 
-CSRF_TRUSTED_ORIGINS = ['https://*','https://e5ff-93-188-41-67.ngrok-free.app','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://*','https://8801-93-188-41-67.ngrok-free.app','https://*.127.0.0.1']
 
 DOMAIN_NAME = "http://127.0.0.1:8000"
 

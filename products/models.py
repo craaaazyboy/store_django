@@ -2,6 +2,7 @@ from django.db import models
 
 from users.models import User
 
+import json
 
 class FlowersCategory(models.Model):
     name = models.CharField(max_length=128, unique=True)
@@ -119,3 +120,14 @@ class Basket(models.Model):
 
     def sum(self):
         return self.product.price * self.quantity
+    
+    def de_json(self):
+        basket_item = {
+            'product_name': self.product.name,
+            'quantity':self.quantity,
+            'price':float(self.product.price),
+            'sum': float(self.sum())
+        }
+        basket_json_item = json.dumps(basket_item)
+        print(basket_json_item)
+        return basket_json_item
